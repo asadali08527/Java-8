@@ -35,17 +35,18 @@ Miscellaneous Core API improvements
 ```
 @FunctionalInterface
 public interface Functional {
-    void method();
+    void abstractMethod();
 }
 ```
 One thing to keep in mind: default and static methods do not break the functional interface contract and may be declared:
 ```
 @FunctionalInterface
 public interface FunctionalDefaultMethods {
-    void method();
+    void abstractMethod();
     default void defaultMethod() {  
     /*
-    .... body
+    ...........
+    method body
     */
     }       
 }
