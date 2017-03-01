@@ -57,7 +57,8 @@ public interface FunctionalDefaultMethods {
 + Lambda expressions (actually i call this as a lambda function or statements instead of  lambda expression because the expression part is substitutable) is a statement where function can be passed around either through argument or return value,because functions become objects.
 + Java is a statically and strongly typed language. So, functions must have a type, in this case it’s an interface.
 + In short lambda functions are objects that implement the functional interface. 
-+ Let's discuss an example by executing using java 7 and java 8 and then we will discuss abount syntax 
++ Let's discuss an example by executing using java 7 and java 8 and then we will discuss abount syntax.
+
 ##### Note - Lambda expression must have type and that type must have only one abstract method.
 ```
 	// Before Java 8
