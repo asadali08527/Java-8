@@ -31,7 +31,7 @@ Miscellaneous Core API improvements
 + java.lang.Runnable with single abstract method run() is a best example of functional interface.
 
 #### Lambda expressions
-
++ Lambdas (also known as closures) are the biggest and most awaited language change in the whole Java 8 release.
 + Lambda expressions (actually i call this as a lambda function or statements instead of  lambda expression because the expression part is substitutable) is a statement where function can be passed around either through argument or return value,because functions become objects.
 + Java is a statically and strongly typed language. So, functions must have a type, in this case it’s an interface.
 + In short lambda functions are objects that implement the functional interface. 
@@ -53,6 +53,7 @@ Runnable r = () -> System.out.println(“Running in another thread”);
 ```
 #### Syntax
 	parameter -> expression body
+In its simplest form, a lambda could be represented as a comma-separated list of parameters, the –> symbol and the body. 	
 ##### Note-
 + Optional type declaration − 
 No need to declare the type of a parameter. The compiler can inference the same from the value of the parameter.
@@ -65,6 +66,31 @@ No need to use curly braces in expression body if the body contains a single sta
 
 + Optional return keyword − 
 The compiler automatically returns the value if the body has a single expression to return the value. Curly braces are required 	to indicate that expression returns a value.
+
+##### Examples
+```
++ 	Arrays.asList( "a", "b", "d" ).forEach( e -> System.out.println( e ) );
+```
+```
+Arrays.asList( "a", "b", "d" ).forEach( e -> {
+    System.out.print( e );
+    System.out.print( e );
+	} );
+```
+Lambdas may return a value. The type of the return value will be inferred by compiler. The return statement is not required if the lambda body is just a one-liner. The two code snippets below are equivalent:
+
+```
++ Arrays.asList( "a", "b", "d" ).sort( ( e1, e2 ) -> e1.compareTo( e2 ) );
+```
+and
+
+```
+Arrays.asList( "a", "b", "d" ).sort( ( e1, e2 ) -> {
+    int result = e1.compareTo( e2 );
+    return result;
+} );
+```
+
 
 ###Part 2. Stream API
 ```
