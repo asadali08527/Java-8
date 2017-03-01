@@ -30,13 +30,13 @@ Miscellaneous Core API improvements
 + Use of @FunctionalInterface annotation is not mandatory but it's best practice to use just because if someone adds just one another method to the interface definition, it will not be functional anymore and compilation process will fail. To overcome this fragility and explicitly declare the intent of the interface as being functional.
 + java.lang.Runnable with single abstract method run() is a best example of functional interface. java.util.concurrent.Callable could be another great example of functional interface.
 + all existing interfaces in Java library have been annotated with @FunctionalInterface as well.
+
 ##### Example
 ```
-Arrays.asList( "a", "b", "d" ).sort( ( e1, e2 ) -> {
-    int result = e1.compareTo( e2 );
-    return result;
-} );
-
+@FunctionalInterface
+public interface Functional {
+    void method();
+}
 ```
 One thing to keep in mind: default and static methods do not break the functional interface contract and may be declared:
 ```
