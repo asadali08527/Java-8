@@ -60,18 +60,18 @@ public interface FunctionalDefaultMethods {
 + Let's discuss an example by executing using java 7 and java 8 and then we will discuss abount syntax 
 ##### Note - Lambda expression must have type and that type must have only one abstract method.
 ```
-// Before Java 8
-Runnable r = new Runnable(){  
-  public void run(){    
-    System.out.println(“Running in another thread”);  
-  }
-};
+	// Before Java 8
+	Runnable r = new Runnable(){  
+  	public void run(){    
+   	 System.out.println(“Running in another thread”);  
+ 	 }
+	};
 
-// Since Java 8
-Runnable r = () -> System.out.println(“Running in another thread”);
+	// Since Java 8
+	Runnable r = () -> System.out.println(“Running in another thread”);
 ```
 #### Syntax
-	parameter -> expression body
+		parameter -> expression body
 In its simplest form, a lambda could be represented as a comma-separated list of parameters, the –> symbol and the body. 	
 ##### Note-
 + Optional type declaration − 
@@ -88,9 +88,9 @@ The compiler automatically returns the value if the body has a single expression
 
 ##### Examples
 ```
-	Arrays.asList( "a", "b", "d" ).forEach( e -> System.out.println( e ) );
+		Arrays.asList( "a", "b", "d" ).forEach( e -> System.out.println( e ) );
 ```
-similar to
+is similar to
 ```
 Arrays.asList( "a", "b", "d" ).forEach( e -> {
     System.out.print( e );
@@ -99,7 +99,7 @@ Arrays.asList( "a", "b", "d" ).forEach( e -> {
 Lambdas may return a value. The type of the return value will be inferred by compiler. The return statement is not required if the lambda body is just a one-liner. The two code snippets below are equivalent:
 
 ```
-+ Arrays.asList( "a", "b", "d" ).sort( ( e1, e2 ) -> e1.compareTo( e2 ) );
+		Arrays.asList( "a", "b", "d" ).sort( ( e1, e2 ) -> e1.compareTo( e2 ) );
 ```
 and
 ```
