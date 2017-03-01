@@ -29,7 +29,9 @@ Miscellaneous Core API improvements
 + However the annotation @FunctionalInterface is optional,and it doesn’t do anything special to interface except a requirement 			check. just to avoid accidental addition of abstract methods in the functional interfaces we use this annotation, we can 		 think it like @Override annotation.
 + Use of @FunctionalInterface annotation is not mandatory but it's best practice to use.
 + java.lang.Runnable with single abstract method run() is a best example of functional interface.
+
 #### Lambda expressions
+
 + Lambda expressions (actually i call this as a lambda function or statements instead of  lambda expression because the expression part is substitutable) is a statement where function can be passed around either through argument or return value,because functions become objects.
 + Java is a statically and strongly typed language. So, functions must have a type, in this case it’s an interface.
 + In short lambda functions are objects that implement the functional interface. 
@@ -50,7 +52,7 @@ Runnable r = new Runnable(){
 Runnable r = () -> System.out.println(“Running in another thread”);
 ```
 #### Syntax
-parameter -> expression body
+	parameter -> expression body
 ##### Note-
 + Optional type declaration − 
 No need to declare the type of a parameter. The compiler can inference the same from the value of the parameter.
