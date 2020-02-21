@@ -1,5 +1,5 @@
 # Java-8
-Of course, Java-8 is greatest release within the Java world Since Java 5(released in 2004). Java 8 was released on 3rd March, 2014. During this tutorial, we are going to look into Java 8 features with examples. In this tutorial we are going to try and notice the variations by executing java code examples with Java-8 and Java-7.
+Of course, Java-8 is greatest release within the Java world, since Java-5(released in 2004). Java-8 was released on 3rd March, 2014. During this tutorial, we are going to look into Java-8 features with examples. In this tutorial we are going to try and notice the variations by executing java code examples with Java-8 and Java-7.
 
 ## Part 1. 
 Lambda expressions & Functional Interfaces
