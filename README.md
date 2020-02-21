@@ -20,7 +20,7 @@ Java IO improvements
 ## Part 9. 
 Miscellaneous Core API improvements
 
-###Lambda expressions & Functional Interfaces
+### Lambda expressions & Functional Interfaces
 	Before discussing Lambda expressions, let's first discuss something about Functional Interfaces in java 8.
 #### Functional Interfaces
 + FunctionalInterface is a new concept introduced in Java 8.
