@@ -109,6 +109,133 @@ Arrays.asList( "a", "b", "d" ).sort( ( e1, e2 ) -> {
     return result;
 } );
 ```
+##### Things to remember in case of Lambda expressions.
+let's have a look on below code snippet
+```
+interface Evaluate{
+    public void method1();
+}
+class Person{
+    int maxAge=100;                     // instance variable of class Person
+    public void method2(){
+        int age=30;                     // local variable of method 2
+        Evaluate e=()->{                // lambda expression
+            System.out.println(maxAge);
+            System.out.println(age);
+        };
+        e.method1();
+    }
+    	public static void main(String[] args) {
+    	    Person person=new Person();
+    	    person.method2();           //output 100  and 30
+    	}
+}
+```
+Executing above code returns the ouput `100` and `30` without any error, which means from Lambda expression we can access enclosing class variables(`maxAge`) and enclosing method variables(`age`). 
+So far so good,, but let's have a look on below code snippet where we are trying to mutate the value of class variable and method variable inside Lambda expresions.
+```
+interface Evaluate{
+    public void method1();
+}
+class Person{
+    int maxAge=100;                     
+    public void method2(){
+        int age=30;                     
+        Evaluate e=()->{                
+            maxAge=65;                  // Works perfectly without any error
+            age= 20;                    // compile time error
+            System.out.println(maxAge);
+            System.out.println(age);
+        };
+        e.method1();
+    }
+    	public static void main(String[] args) {
+    	    Person person=new Person();
+    	    person.method2();           
+    	}
+}
+```
+Exceuting above code will result in compile time error saying 
+> local variable referenced from lambda expression must be final, or effectively final
+
+this is because, a local variable referenced from Lmabda expressions are always final in nature, irrespective of declaration. Here `age` is a local variable which is being referenced from Lambda expression is by default final.
+
+> Note- A local variable not being referenced from Lambda expressions are not final, but if it is being referenced from Lambda expressions is by effectively final.
+
+##### Variables inside Lambda expressions.
+let's have a look on below code snippet
+```
+interface Evaluate{
+    public void method1();
+}
+class Person{
+    int maxAge=100;                     // instance variable of class Person
+    public void method2(){
+        int age=30;                     // local variable of method 2
+        Evaluate e=()->{                // lambda expression
+            System.out.println(maxAge);
+            System.out.println(age);
+        };
+        e.method1();
+    }
+    	public static void main(String[] args) {
+    	    Person person=new Person();
+    	    person.method2();           //output 100  and 30
+    	}
+}
+```
+Executing above code returns the ouput `100` and `30` without any error, which means from Lambda expression we can access enclosing class variables(`maxAge`) and enclosing method variables(`age`). 
+So far so good,, but let's have a look on below code snippet where we are trying to mutate the value of class variable and method variable inside Lambda expresions.
+```
+interface Evaluate{
+    public void method1();
+}
+class Person{
+    int maxAge=100;                     
+    public void method2(){
+        int age=30;                     
+        Evaluate e=()->{                
+            maxAge=65;                  // Works perfectly without any error
+            age= 20;                    // compile time error
+            System.out.println(maxAge);
+            System.out.println(age);
+        };
+        e.method1();
+    }
+    	public static void main(String[] args) {
+    	    Person person=new Person();
+    	    person.method2();           
+    	}
+}
+```
+Exceuting above code will result in compile time error saying 
+> local variable referenced from lambda expression must be final, or effectively final
+
+this is because, a local variable referenced from Lmabda expressions are always final in nature, irrespective of declaration. Here `age` is a local variable which is being referenced from Lambda expression is by default final.
+
+> Note- A local variable not being referenced from Lambda expressions are not final, but if it is being referenced from Lambda expressions is by effectively final.
+#### Lambda expressions and it's advantage
+  - Through Lambda expressions we can enable functional programming in Java.
+  - Readability could be improved by reducing code length through Lambda expressions.
+  - Complexity of Anonymous class could be resolved upto some extent.
+  - We can pass functions/procedures as an arguments.
+  - Functions and procedure can also be treated as a value.
+  - Parallel procesing could easily be achieved through Lambda expressions.
+
+
+# Anonymous inner class Vs Lambda expressions
+
+| Anonymous Inner Class                      | Lambda Expressions              |
+| ----------------------------               | --------------------------   |
+| Class without name                         | Function without name |
+| It can extend abstract as well as concrete class| It can't extend abstract or  concrete class |
+| It can implements an interface that contains any number of abstract methods                               | It can implements an interface that contains only one abstract methods(functional interface)  |
+| It can be instantiated(object can be craeted)                                    |It can't be instantiated (object creation is not possile)   |
+| Inside Anonymous Inner class we can declare instance variable                                     | We can't declare instance variable, whatever variable is declared are considered as local variable |
+| Inside Anonymous Inner class `this` always referes to current anonymous class object but not outer class object.                        |`this` always referes to current outer class object i.e., enclosing object.      |
+Good to use if we want to handle multiple methods.|Good to use if we want to handle interface with single abstract methods(functional interface).|
+|At the time of compilation a separate class file will be generated.|No separate class file will be generated.|
+|Memory will be generated on demand whenever we are creating objects| Lambda expresion resides in permanent memory of JVM(method area)
 
 
 ###Part 2. Stream API
