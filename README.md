@@ -26,7 +26,7 @@ Miscellaneous Core API improvements
     - Supplier
     - Consumer
 
-### Lambda expressions & Functional Interfaces
+### Part 1. Lambda expressions & Functional Interfaces
 	Before discussing Lambda expressions, let's first discuss something about Functional Interfaces in java 8.
 #### Functional Interfaces
 + Functional Interface is a new concept introduced in Java 8.
