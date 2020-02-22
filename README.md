@@ -191,7 +191,9 @@ Good to use if we want to handle multiple methods.|Good to use if we want to han
 |Memory will be generated on demand whenever we are creating objects| Lambda expresion resides in permanent memory of JVM(method area)
 
 
-###Part 2. Stream API
+### Part 2. Stream API
+
+Stream allows us to process objects from collections. In java 8, `Stream` is an interface present under `java.util.stream` package.
 ```
 public class IntStream_1 {
 	public static void main(String[] args) {
@@ -220,8 +222,7 @@ public class IntStream_1 {
 		}*/
 }
 ```
-# Stream API
-Stream allows us to process objects from collections. In java 8, `Stream` is an interface present under `java.util.stream` package. Now we will discuss various methods available under stream API.
+Now we will discuss various methods available under stream API.
 ### filter()
 ```
 //Find out even number from the below list in a separate list.
@@ -396,6 +397,6 @@ marks.add(50);
 Integer i[]=marks.stream().toArray(Integer[]::new);
 Stream.of(i).forEach(System.out::println);// print each element inside array
 ```
-`Integer[]::new` is called as constructor reference, which returns anew object of an array of Integer type.
+`Integer[]::new` is called as constructor reference, which returns a new object of an array of Integer type.
 
 Tutorials will be updated soon
