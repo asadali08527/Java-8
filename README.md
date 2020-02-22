@@ -220,4 +220,181 @@ public class IntStream_1 {
 		}*/
 }
 ```
+# Stream API
+Stream allows us to process objects from collections. In java 8, `Stream` is an interface present under `java.util.stream` package. Now we will discuss various methods available under stream API.
+### filter()
+```
+//Find out even number from the below list in a separate list.
+List<Integer> list=new ArrayList<Integer>();
+list.add(5);
+list.add(10);
+list.add(15);
+list.add(20);
+//Before Java 8
+List<Integer> evenList=new ArrayList<Integer>();
+for(Integer number:list){
+    if(number%2==0)
+      evenList.add(number);
+}
+System.out.println(evenList); // output 10,20
+//After Java 8
+List<Integer> evenList=list.stream().filter(f->f%2==0).collect(Collectors.toList());
+```
+### map()
+```
+//Add some grace marks to below list of marks.
+List<Integer> marks=new ArrayList<Integer>();
+marks.add(35);
+marks.add(40);
+marks.add(45);
+marks.add(50);
+
+//Before Java 8
+List<Integer> markWithGrace=new ArrayList<Integer>();
+for(Integer number:list){
+      markWithGrace.add(number+5);
+}
+System.out.println(evenList); // output 40,45,50,55
+
+//After Java 8
+List<Integer> markWithGrace=list.stream().map(f->f+5).collect(Collectors.toList());
+// output 40,45,50,55
+```
+> Note- filter() method always takes `predicate` as an argument where as map() method takes `function` as an argument.
+`Predicate` is always a boolean valued function, its return type is always boolean. where as 'Function' is non boolean valued function, it's return type could be of any type other than boolean.
+
+### count()
+```
+//Count marks having score of less than 45.
+List<Integer> marks=new ArrayList<Integer>();
+marks.add(35);
+marks.add(40);
+marks.add(45);
+marks.add(50);
+long marksLessThan45=marks.stream().filter(f->f<45).count();
+//output 2
+```
+> return type of `count()` method is always `long`. It used to count the number of objects presents inside a collection.
+
+### sorted()
+```
+//Sort the list of marks in natural sorting order.
+List<Integer> marks=new ArrayList<Integer>();
+marks.add(55);
+marks.add(60);
+marks.add(45);
+marks.add(50);
+List<Integer> sortedMarks=marks.stream().sorted().collect(Collectors.toList());
+//output 45, 50, 55,60
+OR
+List<Integer> sortedMarks=marks.stream().sorted((o1,o2)->o1.compareTo(o2)).collect(Collectors.toList());
+//output 60,55,50,45
+```
+> if you want to achieve descending sorting order, use custom comparator under lambda function, as shown below
+```
+List<Integer> sortedMarks=marks.stream().sorted((o1,o2)->(o1<o2)?1:(o1>o2)?-1:0).collect(Collectors.toList());
+//output 60,55,50,45
+```
+OR
+```
+List<Integer> sortedMarks=marks.stream().sorted((o1,o2)->o2.compareTo(o1)).collect(Collectors.toList());
+//output 60,55,50,45
+```
+OR
+```
+List<Integer> sortedMarks=marks.stream().sorted((o1,o2)->-o1.compareTo(o2)).collect(Collectors.toList());
+//output 60,55,50,45
+```
+Sorting String elements under collections
+```
+//Sort the list of String in natural sorting order.
+List<String> person=new ArrayList<String>();
+person.add("Asad");
+person.add("Ali");
+person.add("James");
+person.add("Bond");
+List<String> sortedPerson=person.stream().sorted().collect(Collectors.toList());
+//output Ali, Asad, Bond,James
+OR
+List<String> sortedMarks=marks.stream().sorted((o1,o2)->-o1.compareTo(o2)).collect(Collectors.toList());
+//output James,Bond,Ali,Asad
+```
+Sorting String elements under collections based on length of String
+```
+//Sort the list of marks in natural sorting order.
+List<String> person=new ArrayList<String>();
+person.add("Asad Hussain");//12
+person.add("Ali Abbas");//9
+person.add("James Bond");//10
+person.add("Bond Michel");//11
+Comparator<String> c=(s1,s2)->{
+    int l1=s1.length();
+    int l2=s2.length();
+    if(l1<l2) return -1;
+    else if(l1>l2) return +1;
+    else return s1.compareTo(s2);
+}
+List<String> sortedPerson=person.stream().sorted(c).collect(Collectors.toList());
+//output Ali Abbas, James Bond, Bond Michel,Asad Hussain
+```
+### min() and max()
+min and max object among a list is always comes under context of sorting.
+Consider an array, `[5,3,10,15,4]` if we want to find min and max element then first it needs to be sorted. If the above array is sorted in ascending order then it will look like `[3,4,5,10,15]`, so `min` element would be `3` and `max` element would be `15`, but if this array is sored in descending order then it will look like `[15,10,5,4,3]` so here min element would be `15` and max element would be `3`.
+
+> Note- In a sorted list `min` element always refer to first element in the list(pointed to 0th index), whereas `max` element refers to last element of the list.
+```
+//Find min and max element in the list.
+List<Integer> marks=new ArrayList<Integer>();
+marks.add(55);
+marks.add(60);
+marks.add(45);
+marks.add(50);
+Integer minElementt=marks.stream().min((o1,o2)->o1.compareTo(o2)).get();
+//output 45
+OR
+Integer maxElementt=marks.stream().max((o1,o2)->o1.compareTo(o2)).get();
+//output 60
+```
+> Note- `min` and `max`  method always takes comparator as an arguments
+
+### forEach()
+```
+//Print each element in the list.
+List<Integer> marks=new ArrayList<Integer>();
+marks.add(55);
+marks.add(60);
+marks.add(45);
+marks.add(50);
+marks.stream().forEach(System.out::print);
+//output 55 60 45 50
+OR
+Consumer<Integer> c=i->{
+    System.out.println("You marks is "+ i);
+};
+marks.stream().forEach(c);
+//output
+You marks is 55
+You marks is 60
+You marks is 45
+You marks is 50
+```
+forEach method is responsible to loop through each element available in the list. Here Consumer is a predefined functional interface which is an argument to forEach method. Above code could also be written in a single statement as follows.
+```
+marks.stream().forEach(i->{
+    System.out.println("You marks is "+ i);
+});
+```
+### toArray()
+It convert stream of object into an array.
+```
+//convert stream of object into an array
+List<Integer> marks=new ArrayList<Integer>();
+marks.add(55);
+marks.add(60);
+marks.add(45);
+marks.add(50);
+Integer i[]=marks.stream().toArray(Integer[]::new);
+Stream.of(i).forEach(System.out::println);// print each element inside array
+```
+`Integer[]::new` is called as constructor reference, which returns anew object of an array of Integer type.
 Tutorials will be updated soon
