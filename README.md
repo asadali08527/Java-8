@@ -397,4 +397,5 @@ Integer i[]=marks.stream().toArray(Integer[]::new);
 Stream.of(i).forEach(System.out::println);// print each element inside array
 ```
 `Integer[]::new` is called as constructor reference, which returns anew object of an array of Integer type.
+
 Tutorials will be updated soon
